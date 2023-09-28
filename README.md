@@ -1,6 +1,6 @@
-# UniMAGE (uni-mage-web)
+# Quebase
 
-A Quasar Project
+A Quasar Vue Project with Firebase Backend
 
 ## Install the dependencies
 
