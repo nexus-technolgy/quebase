@@ -20,108 +20,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerAchievement": {
-        "dataType": "refObject",
-        "properties": {
-            "earned": {"dataType":"double","required":true},
-            "target": {"dataType":"double"},
-            "stage": {"dataType":"double"},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerProgress": {
-        "dataType": "refObject",
-        "properties": {
-            "earned": {"dataType":"double","required":true},
-            "target": {"dataType":"double"},
-            "stage": {"dataType":"double"},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerCurrency": {
-        "dataType": "refObject",
-        "properties": {
-            "balance": {"dataType":"double","required":true},
-            "target": {"dataType":"double"},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerResource": {
-        "dataType": "refObject",
-        "properties": {
-            "balance": {"dataType":"double","required":true},
-            "target": {"dataType":"double"},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "R": {
-        "dataType": "refAlias",
-        "type": {"ref":"Record_string.unknown_","validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerPilot": {
-        "dataType": "refObject",
-        "properties": {
-            "price": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerCurrency"}},
-            "started": {"dataType":"double"},
-            "duration": {"dataType":"double"},
-            "downtime": {"dataType":"double"},
-            "special": {"ref":"R","required":true},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerVehicle": {
-        "dataType": "refObject",
-        "properties": {
-            "price": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerCurrency"}},
-            "started": {"dataType":"double"},
-            "duration": {"dataType":"double"},
-            "downtime": {"dataType":"double"},
-            "balance": {"dataType":"double","required":true},
-            "capacity": {"dataType":"double","required":true},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerMission": {
-        "dataType": "refObject",
-        "properties": {
-            "customer": {"dataType":"nestedObjectLiteral","nestedProperties":{"dialog":{"dataType":"string","required":true},"avatar":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}}},
-            "started": {"dataType":"double"},
-            "duration": {"dataType":"double"},
-            "resource": {"ref":"PlayerResource"},
-            "rewards": {"dataType":"nestedObjectLiteral","nestedProperties":{"pilot":{"ref":"PlayerPilot"},"vehicle":{"ref":"PlayerVehicle"},"resource":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerResource"}},"currency":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerCurrency"}},"progress":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerProgress"}},"experience":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"}}},"required":true},
-            "vehicles": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerVehicle"}},
-            "pilots": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerPilot"}},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerTerritory": {
-        "dataType": "refObject",
-        "properties": {
-            "started": {"dataType":"double"},
-            "duration": {"dataType":"double"},
-            "progress": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerProgress"}},
-            "vehicles": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerVehicle"}},
-            "missions": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerMission"}},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Player": {
         "dataType": "refObject",
         "properties": {
@@ -133,12 +31,6 @@ const models: TsoaRoute.Models = {
             "group": {"dataType":"string"},
             "level": {"dataType":"double","required":true},
             "experience": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"},"required":true},
-            "achievements": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerAchievement"}},
-            "progress": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerProgress"}},
-            "treasury": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerCurrency"}},
-            "inventory": {"dataType":"nestedObjectLiteral","nestedProperties":{"resources":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerResource"},"required":true},"capacity":{"dataType":"double","required":true},"balance":{"dataType":"double","required":true}}},
-            "pilots": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerPilot"}},
-            "territories": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerTerritory"}},
         },
         "additionalProperties": false,
     },
@@ -155,7 +47,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_Player_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"uid":{"dataType":"string"},"locale":{"dataType":"string"},"handle":{"dataType":"string"},"avatar":{"dataType":"string"},"group":{"dataType":"string"},"level":{"dataType":"double"},"experience":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"}},"achievements":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerAchievement"}},"progress":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerProgress"}},"treasury":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerCurrency"}},"inventory":{"dataType":"nestedObjectLiteral","nestedProperties":{"resources":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerResource"},"required":true},"capacity":{"dataType":"double","required":true},"balance":{"dataType":"double","required":true}}},"pilots":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerPilot"}},"territories":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerTerritory"}}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"uid":{"dataType":"string"},"locale":{"dataType":"string"},"handle":{"dataType":"string"},"avatar":{"dataType":"string"},"group":{"dataType":"string"},"level":{"dataType":"double"},"experience":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"}}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "PlayerUpdateRequest": {
