@@ -18,6 +18,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "@nexustech/logger": "^1.4.0",
+    "axios": "^1.5.1",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1",
     "tsoa": "^5.1.1"
