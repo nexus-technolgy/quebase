@@ -3,7 +3,7 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { PlayerController } from './../controllers/player-controller';
+import { PlayerControllerV1 } from './../controllers/player-controller';
 import type { RequestHandler, Router } from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -65,11 +65,11 @@ export function RegisterRoutes(app: Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.post('/players',
-            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.createPlayer)),
+        app.post('/v1/players',
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.createPlayer)),
 
-            function PlayerController_createPlayer(request: any, response: any, next: any) {
+            function PlayerControllerV1_createPlayer(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     data: {"in":"body","name":"data","required":true,"ref":"PlayerCreateRequest"},
@@ -81,7 +81,7 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerController();
+                const controller = new PlayerControllerV1();
 
 
               const promise = controller.createPlayer.apply(controller, validatedArgs as any);
@@ -91,11 +91,11 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/players',
-            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.getAllPlayers)),
+        app.get('/v1/players',
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.getAllPlayers)),
 
-            function PlayerController_getAllPlayers(request: any, response: any, next: any) {
+            function PlayerControllerV1_getAllPlayers(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     handle: {"in":"query","name":"handle","dataType":"string"},
@@ -107,7 +107,7 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerController();
+                const controller = new PlayerControllerV1();
 
 
               const promise = controller.getAllPlayers.apply(controller, validatedArgs as any);
@@ -117,11 +117,11 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/players/:playerId',
-            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.getPlayer)),
+        app.get('/v1/players/:playerId',
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.getPlayer)),
 
-            function PlayerController_getPlayer(request: any, response: any, next: any) {
+            function PlayerControllerV1_getPlayer(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     playerId: {"in":"path","name":"playerId","required":true,"dataType":"string"},
@@ -133,7 +133,7 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerController();
+                const controller = new PlayerControllerV1();
 
 
               const promise = controller.getPlayer.apply(controller, validatedArgs as any);
@@ -143,11 +143,11 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/players/:playerId',
-            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.updatePlayer)),
+        app.put('/v1/players/:playerId',
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.updatePlayer)),
 
-            function PlayerController_updatePlayer(request: any, response: any, next: any) {
+            function PlayerControllerV1_updatePlayer(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     playerId: {"in":"path","name":"playerId","required":true,"dataType":"string"},
@@ -160,7 +160,7 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerController();
+                const controller = new PlayerControllerV1();
 
 
               const promise = controller.updatePlayer.apply(controller, validatedArgs as any);
@@ -170,11 +170,11 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/players/:playerId',
-            ...(fetchMiddlewares<RequestHandler>(PlayerController)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerController.prototype.deletePlayer)),
+        app.delete('/v1/players/:playerId',
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.deletePlayer)),
 
-            function PlayerController_deletePlayer(request: any, response: any, next: any) {
+            function PlayerControllerV1_deletePlayer(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     playerId: {"in":"path","name":"playerId","required":true,"dataType":"string"},
@@ -186,7 +186,7 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerController();
+                const controller = new PlayerControllerV1();
 
 
               const promise = controller.deletePlayer.apply(controller, validatedArgs as any);

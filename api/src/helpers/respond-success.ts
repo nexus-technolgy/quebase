@@ -3,7 +3,7 @@ import { Response } from "firebase-functions/v1";
 
 import { HttpStatusMessage, R } from "../models";
 
-export const respondSuccess = (payload: unknown, response: Response): Response | void => {
+export const respondSuccess = (payload: unknown, response: Response): void => {
   const logger = response.locals.logger ?? console;
   const headers = response.getHeaders();
   let status: HttpStatusCode = HttpStatusCode.Ok,
@@ -36,12 +36,12 @@ export const respondSuccess = (payload: unknown, response: Response): Response |
     typeof data._read === "function"
   ) {
     logger.info("HTTP Response", { status, headers, data: "[ pipe ]" });
-    return data.pipe(response);
+    data.pipe(response);
   } else if (status == HttpStatusCode.NoContent) {
     logger.info("HTTP Response", { status, headers });
-    return response.end();
+    response.end();
   } else {
     logger.info("HTTP Response", { status, headers, data });
-    return response.json(data);
+    response.json(data);
   }
 };

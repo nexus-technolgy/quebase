@@ -6,12 +6,14 @@
   "author": "Daniel Bryar <dbryar@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
-    "lint:fix": "eslint --ext .js,.ts,.vue ./ --fix",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "lint": "bun --bun run eslint --ext .js,.ts,.vue ./src",
+    "lint:fix": "bun --bun run eslint --ext .js,.ts,.vue ./src --fix",
+    "format": "bun --bun run prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "npm run lint:fix && quasar dev",
-    "build": "npm run lint:fix && quasar build"
+    "dev": "bun run lint:fix && bun run quasar dev",
+    "build": "bun i && rm -rf dist && bun run lint:fix && ENV_FILE=production quasar build",
+    "deploy": "bun run build && firebase deploy",
+    "deploy:hosting": "bun run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "@nexustech/fingerprint": "^1.0.4",
@@ -32,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "autoprefixer": "^10.4.2",
+    "dotenv": "^16.3.1",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.27.5",
@@ -43,6 +46,7 @@
   "engines": {
     "node": "^18 || ^16",
     "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
+    "yarn": ">= 1.21.1",
+    "bun": "^1"
   }
 }

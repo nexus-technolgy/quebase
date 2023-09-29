@@ -5,8 +5,8 @@ import { Body, Controller, Delete, Get, Path, Post, Put, Query, Request, Route }
 import { Player } from "../models";
 import { PlayerCreateRequest, PlayerService, PlayerUpdateRequest } from "../services";
 
-@Route("players")
-export class PlayerController extends Controller {
+@Route("v1/players")
+export class PlayerControllerV1 extends Controller {
   @Post() // CREATE
   public async createPlayer(
     @Request() request: ExpressRequest,

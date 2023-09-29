@@ -53,5 +53,7 @@ export const contextualizeRequest = async (
   request.context = { id, logger };
   request.auth = auth;
 
+  logger.debug("Request successfully contextualized");
+
   next();
 };

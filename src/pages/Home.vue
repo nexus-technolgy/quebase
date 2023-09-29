@@ -5,8 +5,20 @@
       <h3>{{ user.displayName }}</h3>
       <pre>{{ JSON.stringify(user.metadata, null, 2) }}</pre>
       <q-space />
-      <q-btn class="flex flex-center q-px-lg q-py-sm q-mb-md" size="md" label="Logout" @click="logout" color="primary" />
-      <q-btn class="flex flex-center q-px-lg q-py-sm q-mb-md" size="md" label="Test API" @click="apiTest('api/test')" color="primary" />
+      <q-btn
+        class="flex flex-center q-px-lg q-py-sm q-mb-md"
+        size="md"
+        label="Logout"
+        @click="logout"
+        color="primary"
+      />
+      <q-btn
+        class="flex flex-center q-px-lg q-py-sm q-mb-md"
+        size="md"
+        label="Test API"
+        @click="apiTest('test')"
+        color="primary"
+      />
     </div>
   </q-page>
 </template>
@@ -25,11 +37,14 @@ export default defineComponent({
     const user = reactive({} as User);
 
     const apiTest = (url: string) => {
-      console.log(api);
       api
         .call(url)
         .then((result) => {
-          Notify.create({ message: "API request success", position: "top-right", type: "positive" });
+          Notify.create({
+            message: "API request success",
+            position: "top-right",
+            type: "positive",
+          });
           logger.info(result);
         })
         .catch(() => {

@@ -10,6 +10,7 @@
 
 const { configure } = require("quasar/wrappers");
 const path = require("path");
+const env = require("dotenv").config({ path: `.env.${process.env.ENV_FILE.toLowerCase()}` }).parsed;
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -49,9 +50,11 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
+      env,
+
       target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
-        node: "node16",
+        node: "node18",
       },
 
       vueRouterMode: "history", // available values: 'hash', 'history'
@@ -59,7 +62,7 @@ module.exports = configure(function (/* ctx */) {
       // vueDevtools,
       // vueOptionsAPI: false,
 
-      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
+      rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       // publicPath: '/',
       // analyze: true,
