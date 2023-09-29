@@ -50,9 +50,14 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"uid":{"dataType":"string"},"locale":{"dataType":"string"},"handle":{"dataType":"string"},"avatar":{"dataType":"string"},"group":{"dataType":"string"},"level":{"dataType":"double"},"experience":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"}}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_PlayerCreateRequest_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"handle":{"dataType":"string"},"locale":{"dataType":"string"},"avatar":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "PlayerUpdateRequest": {
         "dataType": "refAlias",
-        "type": {"ref":"PlayerCreateRequest","validators":{}},
+        "type": {"ref":"Partial_PlayerCreateRequest_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
