@@ -4,7 +4,7 @@ import { DataService, SearchQuery } from "./firestore-service";
 
 export type PlayerCreateRequest = Pick<Player, "handle" | "locale" | "avatar">;
 
-export type PlayerUpdateRequest = PlayerCreateRequest;
+export type PlayerUpdateRequest = Partial<PlayerCreateRequest>;
 
 export class PlayerService {
   private auth;
@@ -23,7 +23,7 @@ export class PlayerService {
   async search(handle: string): Promise<Player[]> {
     const searchParams: SearchQuery[] = [
       ["handle", ">=", handle],
-      ["handle", "<=", handle],
+      ["handle", "<=", handle + "\uf7ff"],
     ];
     this.logger.debug("Player::search", { handle });
     return await new DataService(this.auth, this.collection).find<Player>(searchParams);

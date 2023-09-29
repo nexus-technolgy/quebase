@@ -1,8 +1,8 @@
-import type { WhereFilterOp } from "firebase-admin/firestore";
+import type { Query, WhereFilterOp } from "firebase-admin/firestore";
 import { AuthData } from "firebase-functions/lib/common/providers/https";
 
 import { store } from "..";
-import { ForbiddenError, R, ReferenceError } from "../models";
+import { ForbiddenError, NotFoundError, R, ReferenceError } from "../models";
 
 export type SearchQuery = [
   string,
@@ -32,11 +32,13 @@ export class DataService {
 
   async find<T = R>(searchQuery: SearchQuery[]): Promise<T[]> {
     const collectionReference = store.collection(this.collection);
+
+    let collectionQuery: Query = collectionReference;
     for (const query of searchQuery) {
-      collectionReference.where(...query);
+      collectionQuery = collectionQuery.where(...query);
     }
 
-    const queryResult = await collectionReference.get();
+    const queryResult = await collectionQuery.get();
     if (queryResult.empty) return [];
 
     const resultSet = new Set<T>();
@@ -65,13 +67,15 @@ export class DataService {
     if (!this.path) throw new ReferenceError(generateRefererenceError("read"));
 
     const documentReference = store.collection(this.collection).doc(this.path);
-    const documentData = await documentReference.get();
+    const document = await documentReference.get();
 
-    if (own && documentData.get("uid") !== this.auth.uid)
+    if (!document.exists) throw new NotFoundError(`${this.path} not found`);
+
+    if (own && document.get("uid") !== this.auth.uid)
       throw new ForbiddenError(generateForbiddenError("read"));
 
     const { id } = documentReference;
-    return { id, ...documentData.data() } as T;
+    return { id, ...document.data() } as T;
   }
 
   async readOwn<T = R>(): Promise<T> {
@@ -98,6 +102,8 @@ export class DataService {
 
     const documentReference = store.collection(this.collection).doc(this.path);
     const document = await documentReference.get();
+
+    if (!document.exists) throw new NotFoundError(`${this.path} not found`);
 
     if (own && document.get("uid") !== this.auth.uid)
       throw new ForbiddenError(generateForbiddenError("update"));
