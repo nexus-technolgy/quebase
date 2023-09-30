@@ -21,7 +21,7 @@ export class PlayerService {
   }
 
   async search(handle: string): Promise<Player[]> {
-    const searchParams: SearchQuery[] = [
+    const searchParams: SearchQuery<Player>[] = [
       ["handle", ">=", handle],
       ["handle", "<=", handle + "\uf7ff"],
     ];
@@ -46,10 +46,7 @@ export class PlayerService {
 
   async update(id: string, params: PlayerUpdateRequest): Promise<Partial<Player>> {
     this.logger.debug("Player::update", params);
-    const updates = {
-      ...params,
-    };
-    return await new DataService(this.auth, this.collection, id).updateOwn(updates);
+    return await new DataService(this.auth, this.collection, id).updateOwn(params);
   }
 
   async delete(id: string): Promise<void> {

@@ -4,8 +4,8 @@ import { AuthData } from "firebase-functions/lib/common/providers/https";
 import { store } from "..";
 import { ForbiddenError, NotFoundError, R, ReferenceError } from "../models";
 
-export type SearchQuery = [
-  string,
+export type SearchQuery<T = R> = [
+  keyof T,
   WhereFilterOp,
   string | number | boolean | Array<string | number | boolean>
 ];
@@ -84,8 +84,8 @@ export class DataService {
 
   async write<T extends R>(data: T): Promise<{ id: string } & typeof data> {
     const documentReference = this.path
-      ? store.collection(this.collection).doc(this.path)
-      : store.collection(this.collection).doc();
+      ? store.collection(this.collection).doc(this.path) // overwrite
+      : store.collection(this.collection).doc(); // create
 
     // when specified by ID a user should only be able to overwrite to their own documents
     if (this.path && (await documentReference.get()).get("uid") !== this.auth.uid)

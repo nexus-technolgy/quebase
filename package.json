@@ -4,7 +4,7 @@
   "description": "A Quasar-Vue-Firebase web front end boilerplate for quebase API",
   "productName": "quebase",
   "author": "Daniel Bryar <dbryar@gmail.com>",
-  "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "lint": "bun --bun run eslint --ext .js,.ts,.vue ./src",
     "lint:fix": "bun --bun run eslint --ext .js,.ts,.vue ./src --fix",
