@@ -54,13 +54,16 @@ export class RestApi implements IRestApi {
       // Axios already does this; the next line is purely for logging
       const url = config.url?.startsWith("http") ? config.url : `${config.baseURL}${config.url}`;
       this.logger.debug(`axios: ${config.method?.toUpperCase()} ${url}`);
-      if (config.headers) this.logger.trace("axios:", config.headers);
-      if (config.data) this.logger.trace("axios:", { data: redact(config.data) });
+      if (config.headers) this.logger.debug("axios:", config.headers);
+      if (config.data) this.logger.debug("axios:", { data: redact(config.data) });
 
       return mockRequestInterceptor(config);
     }, undefined);
 
-    this.axios.interceptors.response.use((value: AxiosResponse) => Promise.resolve(value), mockResponseErrorInterceptor);
+    this.axios.interceptors.response.use(
+      (value: AxiosResponse) => Promise.resolve(value),
+      mockResponseErrorInterceptor
+    );
   }
 
   call = async <T = unknown>(input: string | AxiosRequestConfig) => {
@@ -72,8 +75,10 @@ export class RestApi implements IRestApi {
       const now = Date.now();
       const { status, statusText, data } = await this.axios<T>(config);
 
-      this.logger.debug(`axios::success ${config.method?.toUpperCase()} ${config.url} (${Date.now() - now}ms)`);
-      this.logger.trace({ status, statusText, data: redact(data) });
+      this.logger.info(
+        `axios::success ${config.method?.toUpperCase()} ${config.url} (${Date.now() - now}ms)`
+      );
+      this.logger.debug({ status, statusText, data: redact(data) });
 
       return { status, data };
     } catch (err: unknown) {

@@ -58,3 +58,16 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.q-card {
+  width: 22.5rem;
+}
+.bg-image {
+  background-image: url("https://source.unsplash.com/random/300x720?landscape,night,stars");
+  background-size: cover;
+}
+.bg-field {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+</style>

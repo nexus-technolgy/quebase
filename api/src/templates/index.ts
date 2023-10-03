@@ -1,1 +1,1 @@
-export * from "./player-template";
+export * from "./user-template";

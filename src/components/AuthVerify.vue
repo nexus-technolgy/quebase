@@ -1,18 +1,41 @@
 <template>
-  <q-page class="window-height window-width row justify-center items-center">
-    <div class="column col-6">
+  <q-page class="window-height window-width row justify-center bg-image">
+    <div class="column">
       <div class="row">
-        <q-card square bordered class="q-pa-lg shadow-1 full-width">
-          <q-card-section
-            ><h5>Verify Email</h5>
+        <h5 class="q-pt-xl text-white text-center full-width">Verify Email</h5>
+      </div>
+      <div class="row">
+        <q-card square class="q-pa-lg shadow-0" style="background: none">
+          <q-card-section>
             <q-form class="q-gutter-md">
-              <q-input filled clearable v-model="email" type="email" name="email" label="email address">
-                <template v-slot:before><q-icon name="email" /></template>
+              <q-input
+                dark
+                square
+                filled
+                clearable
+                v-model="email"
+                name="email"
+                type="email"
+                label="Email"
+                color="dark"
+                bg-color="field"
+                autofocus
+              >
+                <template v-slot:prepend>
+                  <q-icon name="email" color="white" />
+                </template>
               </q-input>
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
-            <q-btn unelevated size="lg" class="full-width" label="Verify" @click="fn.verifyEmail(email)" />
+            <q-btn
+              unelevated
+              class="full-width"
+              color="dark"
+              size="lg"
+              label="Verify"
+              @click="fn.verifyEmail(email)"
+            />
           </q-card-actions>
         </q-card>
       </div>

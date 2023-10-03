@@ -3,24 +3,13 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { PlayerControllerV1 } from './../controllers/player-controller';
+import { UserControllerV1 } from './../controllers/user-controller';
 import type { RequestHandler, Router } from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "PlayerExperience": {
-        "dataType": "refObject",
-        "properties": {
-            "earned": {"dataType":"double","required":true},
-            "target": {"dataType":"double"},
-            "stage": {"dataType":"double"},
-            "expires": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Player": {
+    "User": {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"string","required":true},
@@ -28,36 +17,33 @@ const models: TsoaRoute.Models = {
             "locale": {"dataType":"string","required":true},
             "handle": {"dataType":"string","required":true},
             "avatar": {"dataType":"string","required":true},
-            "group": {"dataType":"string"},
-            "level": {"dataType":"double","required":true},
-            "experience": {"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"},"required":true},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_Player.handle-or-locale-or-avatar_": {
+    "Pick_User.handle-or-locale-or-avatar_": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"handle":{"dataType":"string","required":true},"locale":{"dataType":"string","required":true},"avatar":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerCreateRequest": {
+    "UserCreateRequest": {
         "dataType": "refAlias",
-        "type": {"ref":"Pick_Player.handle-or-locale-or-avatar_","validators":{}},
+        "type": {"ref":"Pick_User.handle-or-locale-or-avatar_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Partial_Player_": {
+    "Partial_User_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"uid":{"dataType":"string"},"locale":{"dataType":"string"},"handle":{"dataType":"string"},"avatar":{"dataType":"string"},"group":{"dataType":"string"},"level":{"dataType":"double"},"experience":{"dataType":"array","array":{"dataType":"refObject","ref":"PlayerExperience"}}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"uid":{"dataType":"string"},"locale":{"dataType":"string"},"handle":{"dataType":"string"},"avatar":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Partial_PlayerCreateRequest_": {
+    "Partial_UserCreateRequest_": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"handle":{"dataType":"string"},"locale":{"dataType":"string"},"avatar":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlayerUpdateRequest": {
+    "UserUpdateRequest": {
         "dataType": "refAlias",
-        "type": {"ref":"Partial_PlayerCreateRequest_","validators":{}},
+        "type": {"ref":"Partial_UserCreateRequest_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -70,14 +56,14 @@ export function RegisterRoutes(app: Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.post('/v1/players',
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.createPlayer)),
+        app.post('/v1/users',
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1.prototype.createUser)),
 
-            function PlayerControllerV1_createPlayer(request: any, response: any, next: any) {
+            function UserControllerV1_createUser(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
-                    data: {"in":"body","name":"data","required":true,"ref":"PlayerCreateRequest"},
+                    data: {"in":"body","name":"data","required":true,"ref":"UserCreateRequest"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -86,21 +72,21 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerControllerV1();
+                const controller = new UserControllerV1();
 
 
-              const promise = controller.createPlayer.apply(controller, validatedArgs as any);
+              const promise = controller.createUser.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/v1/players',
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.getAllPlayers)),
+        app.get('/v1/users',
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1.prototype.getAllUsers)),
 
-            function PlayerControllerV1_getAllPlayers(request: any, response: any, next: any) {
+            function UserControllerV1_getAllUsers(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     handle: {"in":"query","name":"handle","dataType":"string"},
@@ -112,24 +98,24 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerControllerV1();
+                const controller = new UserControllerV1();
 
 
-              const promise = controller.getAllPlayers.apply(controller, validatedArgs as any);
+              const promise = controller.getAllUsers.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/v1/players/:playerId',
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.getPlayer)),
+        app.get('/v1/users/:userId',
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1.prototype.getUser)),
 
-            function PlayerControllerV1_getPlayer(request: any, response: any, next: any) {
+            function UserControllerV1_getUser(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
-                    playerId: {"in":"path","name":"playerId","required":true,"dataType":"string"},
+                    userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -138,25 +124,25 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerControllerV1();
+                const controller = new UserControllerV1();
 
 
-              const promise = controller.getPlayer.apply(controller, validatedArgs as any);
+              const promise = controller.getUser.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/v1/players/:playerId',
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.updatePlayer)),
+        app.put('/v1/users/:userId',
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1.prototype.updateUser)),
 
-            function PlayerControllerV1_updatePlayer(request: any, response: any, next: any) {
+            function UserControllerV1_updateUser(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
-                    playerId: {"in":"path","name":"playerId","required":true,"dataType":"string"},
-                    data: {"in":"body","name":"data","required":true,"ref":"PlayerUpdateRequest"},
+                    userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
+                    data: {"in":"body","name":"data","required":true,"ref":"UserUpdateRequest"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -165,24 +151,24 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerControllerV1();
+                const controller = new UserControllerV1();
 
 
-              const promise = controller.updatePlayer.apply(controller, validatedArgs as any);
+              const promise = controller.updateUser.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/v1/players/:playerId',
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1)),
-            ...(fetchMiddlewares<RequestHandler>(PlayerControllerV1.prototype.deletePlayer)),
+        app.delete('/v1/users/:userId',
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1)),
+            ...(fetchMiddlewares<RequestHandler>(UserControllerV1.prototype.deleteUser)),
 
-            function PlayerControllerV1_deletePlayer(request: any, response: any, next: any) {
+            function UserControllerV1_deleteUser(request: any, response: any, next: any) {
             const args = {
                     request: {"in":"request","name":"request","required":true,"dataType":"object"},
-                    playerId: {"in":"path","name":"playerId","required":true,"dataType":"string"},
+                    userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -191,10 +177,10 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = getValidatedArgs(args, request, response);
 
-                const controller = new PlayerControllerV1();
+                const controller = new UserControllerV1();
 
 
-              const promise = controller.deletePlayer.apply(controller, validatedArgs as any);
+              const promise = controller.deleteUser.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

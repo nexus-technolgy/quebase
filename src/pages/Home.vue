@@ -39,16 +39,20 @@ export default defineComponent({
     const apiTest = (url: string) => {
       api
         .call(url)
-        .then((result) => {
+        .then(() => {
           Notify.create({
             message: "API request success",
             position: "top-right",
             type: "positive",
           });
-          logger.info(result);
         })
-        .catch(() => {
-          Notify.create({ message: "API request failed", position: "top-right", type: "negative" });
+        .catch((error) => {
+          logger.error(error);
+          Notify.create({
+            message: `API request failed (${error.message})`,
+            position: "top-right",
+            type: "negative",
+          });
         });
     };
 

@@ -17,7 +17,7 @@ export const authorizeRequest = async (
     throw new UnauthorizedError(e);
   }
 
-  logger.debug({ authorization });
+  logger.debug("Authorization", authorization);
   const jwt = authorization ? authorization.split("Bearer ")[1] : "";
 
   if (!jwt) {

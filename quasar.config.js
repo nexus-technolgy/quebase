@@ -10,7 +10,9 @@
 
 const { configure } = require("quasar/wrappers");
 const path = require("path");
-const env = require("dotenv").config({ path: `.env.${process.env.ENV_FILE.toLowerCase()}` }).parsed;
+const env = require("dotenv").config({
+  path: `.env.${(process.env.ENV_FILE ?? "development").toLowerCase()}`,
+}).parsed;
 
 module.exports = configure(function (/* ctx */) {
   return {

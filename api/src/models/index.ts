@@ -1,5 +1,5 @@
 export * from "./common";
 export * from "./errors";
-export * from "./player";
+export * from "./user";
 export * from "./service";
 export * from "./response";

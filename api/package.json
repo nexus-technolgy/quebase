@@ -4,10 +4,11 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "eslint --ext .js,.ts . --fix",
-    "build": "rm -rf lib && npm run lint:fix && npm run build:routes && node esbuild.mjs",
+    "build": "bun i && rm -rf lib && npm run lint:fix && npm run build:routes && node esbuild.mjs",
     "build:watch": "node esbuild.mjs --watch",
     "build:routes": "tsoa routes",
     "serve": "npm run build && firebase emulators:start",
+    "serve:functions": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
